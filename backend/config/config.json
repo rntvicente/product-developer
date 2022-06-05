@@ -1,0 +1,6 @@
+{
+  "PORT": 8339,
+  "DATABASE_NAME": "developers",
+  "DATABASE_URI": "mongodb://localhost:27017/developers",
+  "SECRET": "secret1"
+}

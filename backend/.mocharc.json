@@ -1,0 +1,11 @@
+{
+  "bail": true,
+  "extension": ["js"],
+  "reporter": "spec",
+  "exit": true,
+  "recursive": true,
+  "timeout": "2000",
+  "ui": "bdd",
+  "watch-files": ["src/**/*.js", "test/**/*.js"],
+  "watch-ignore": []
+}
