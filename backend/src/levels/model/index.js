@@ -11,5 +11,5 @@ module.exports = {
   getAll,
   findById,
   findOneAndUpdate,
-  findOneAndDelete,
+  findOneAndDelete
 };

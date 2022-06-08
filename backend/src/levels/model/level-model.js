@@ -27,12 +27,18 @@ const findById = async (filter, options = {}) => {
 const findOneAndUpdate = async (filter, set, options = {}) => {
   const level = await database
     .getCollection(COLLECTION_NAME)
-    .updateOne(filter, { $set: set }, options);
-  return level;
+    .updateOne(filter, set, options);
+
+  const updated = (level.modifiedCount === 1);
+
+  return updated;
 };
 
 const findOneAndDelete = async (filter, options = {}) => {
-  await database.getCollection(COLLECTION_NAME).deleteOne(filter, options);
+  const level = await database.getCollection(COLLECTION_NAME).deleteOne(filter, options);
+  const deleted = (level.deletedCount === 1);
+
+  return deleted;
 };
 
 module.exports = {
