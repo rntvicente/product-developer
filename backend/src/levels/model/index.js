@@ -1,7 +1,7 @@
 const {
   create,
   getAll,
-  getLevelFindBy,
+  findById,
   findOneAndUpdate,
   findOneAndDelete,
 } = require("./level-model");
@@ -9,7 +9,7 @@ const {
 module.exports = {
   create,
   getAll,
-  getLevelFindBy,
+  findById,
   findOneAndUpdate,
   findOneAndDelete,
 };

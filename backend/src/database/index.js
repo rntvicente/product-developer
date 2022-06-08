@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const conf = require('../config');
 
@@ -63,7 +63,8 @@ const database = (() => {
   return {
     connect,
     close,
-    getCollection
+    getCollection,
+    ObjectId
   };
 })();
 

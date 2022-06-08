@@ -8,7 +8,7 @@ const create = async (level) => {
     createAt: new Date(),
   };
 
-  await database.getCollection(COLLECTION_NAME).insertOne(data);
+  return await database.getCollection(COLLECTION_NAME).insertOne(data);
 };
 
 const getAll = async () => {
@@ -16,11 +16,10 @@ const getAll = async () => {
   return levels;
 };
 
-const getLevelFindBy = async (filter, options = {}) => {
+const findById = async (filter, options = {}) => {
   const level = await database
     .getCollection(COLLECTION_NAME)
-    .findOne(filter, options)
-    .toArray();
+    .findOne(filter, options);
 
   return level;
 };
@@ -39,7 +38,7 @@ const findOneAndDelete = async (filter, options = {}) => {
 module.exports = {
   create,
   getAll,
-  getLevelFindBy,
+  findById,
   findOneAndUpdate,
   findOneAndDelete,
 };
