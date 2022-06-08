@@ -2,11 +2,13 @@ const express = require("express");
 const helmet = require("helmet");
 const compression = require("compression");
 const cors = require("cors");
+const passport = require("passport");
 
-const levelRouter = require("../levels");
-const errorHandlers = require("../error-handlers");
-const config = require("../config");
 const pkg = require("../../package.json");
+const config = require("../config");
+const errorHandlers = require("../error-handlers");
+const router = require("../router");
+const bearer = require("../auth/strategy-bearer");
 
 const server = (() => {
   const app = express();
@@ -21,27 +23,18 @@ const server = (() => {
       app.use(express.urlencoded({ extended: true }));
       app.use(helmet());
       app.use(compression());
-      app.use(levelRouter);
+      app.use(router());
       app.use(errorHandlers);
+      passport.use(bearer);
 
       serverProcess = app.listen(app.get("port"), () => {
-        console.info(
-          "------------------------------------------------------------------"
-        );
+        console.info("------------------------------------------------------------------");
         console.info(`${pkg.name} - Version: ${pkg.version}`);
-        console.info(
-          "------------------------------------------------------------------"
-        );
+        console.info("------------------------------------------------------------------");
         console.info(`ATTENTION, ${env} ENVIRONMENT!`);
-        console.info(
-          "------------------------------------------------------------------"
-        );
-        console.info(
-          `Express server listening on port: ${serverProcess.address().port}`
-        );
-        console.info(
-          "------------------------------------------------------------------"
-        );
+        console.info("------------------------------------------------------------------");
+        console.info(`Express server listening on port: ${serverProcess.address().port}`);
+        console.info("------------------------------------------------------------------");
 
         return resolve(app);
       });
